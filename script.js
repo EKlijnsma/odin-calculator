@@ -49,6 +49,9 @@ for (num of numbers) {
     })
 }
 
-clearBtn.addEventListener("click", () => display.textContent = "")
+clearBtn.addEventListener("click", () => {
+    displayValue = ''
+    display.textContent = displayValue
+})
 
 // TODO: the display widens when you keep entering numbers, should be limited
