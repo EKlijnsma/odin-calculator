@@ -34,3 +34,13 @@ function operate(operator, a, b) {
 let a;
 let operator;
 let b;
+let display = document.querySelector(".display");
+let displayValue = display.textContent
+
+const numbers = document.querySelectorAll(".num");
+for (num of numbers) {
+    num.addEventListener("click", (e) => {
+        displayValue += e.target.textContent
+        display.textContent = displayValue
+    })
+}
