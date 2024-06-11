@@ -22,7 +22,7 @@ function operate(operator, a, b) {
             return add(a, b);
         case '-':
             return subtract(a,b)
-        case '*':
+        case 'x':
             return multiply(a,b)
         case '/':
             return divide(a,b)
@@ -31,27 +31,58 @@ function operate(operator, a, b) {
     }                       
 }
 
-let a;
-let operator;
-let b;
-
-const display = document.querySelector(".display");
+let a = '';
+let operator = '';
+let b = '';
 let displayValue = '';
 
+const display = document.querySelector(".display");
 const clearBtn = document.querySelector("#clr")
-const numbers = document.querySelectorAll(".num");
+const numberButtons = document.querySelectorAll(".num");
+const operatorButtons = document.querySelectorAll(".operator")
+const equalBtn = document.querySelector(".equal")
 
-
-for (num of numbers) {
-    num.addEventListener("click", (e) => {
+for (btn of numberButtons) {
+    btn.addEventListener("click", (e) => {
+        // TODO: only if string length allows
         displayValue += e.target.textContent
         display.textContent = displayValue
     })
 }
 
-clearBtn.addEventListener("click", () => {
-    displayValue = ''
-    display.textContent = displayValue
-})
+for (btn of operatorButtons) {
+    btn.addEventListener("click", (e) => {
+        if (a !== '') {
+            // if a value of a is present, any operator button first serves as the equal button
+            calculate()
+        }
+        // at this point the display shows the numbers entered by the user, or the outcome of an earlier operation
+        a = display.textContent
+        operator = e.target.textContent
+        displayValue = ''
+    })
+}
 
+clearBtn.addEventListener("click", clearAll)
+equalBtn.addEventListener("click", calculate)
+
+function calculate() {
+    b = display.textContent
+    let result = operate(operator, parseFloat(a), parseFloat(b))
+    clearAll()
+    // first clear all, then show result on display
+    display.textContent = result
+}
+
+function clearAll() {
+    // clears the display and all running variables
+    displayValue = ''
+    a = ''
+    operator = ''
+    b = ''
+    display.textContent = displayValue
+}
 // TODO: the display widens when you keep entering numbers, should be limited
+
+// eventlisteners on operator buttons:
+// when pressed, store current display value as a, store operator symbol as operator
