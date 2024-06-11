@@ -2,4 +2,61 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: whitesmoke;
+    font-size: 36px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 412px;
+    padding: 6px;
+    gap: 1px;
+    background-color: rgb(21, 21, 21);
+}
+
+.display {
+    background-color: whitesmoke;
+    color: rgb(21, 21, 21);
+    flex: 1 1 100px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    flex: 1 1 100px;
+    gap: 1px;
+}
+
+.btn {
+    flex: 1 1 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btn.wide {
+    flex: 1 1 201px;
+}
+
+.light {
+    background-color: rgb(121, 121, 123);
+}
+.dark {
+    background-color: rgb(62, 62, 63);
+}
+.color {
+    background-color: rgb(253, 158, 43);
 }
