@@ -34,13 +34,21 @@ function operate(operator, a, b) {
 let a;
 let operator;
 let b;
-let display = document.querySelector(".display");
-let displayValue = display.textContent
 
+const display = document.querySelector(".display");
+let displayValue = '';
+
+const clearBtn = document.querySelector("#clr")
 const numbers = document.querySelectorAll(".num");
+
+
 for (num of numbers) {
     num.addEventListener("click", (e) => {
         displayValue += e.target.textContent
         display.textContent = displayValue
     })
 }
+
+clearBtn.addEventListener("click", () => display.textContent = "")
+
+// TODO: the display widens when you keep entering numbers, should be limited
