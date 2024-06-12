@@ -23,7 +23,7 @@ function percent(a) {
     return a / 100
 }
 
-function swap(a) {
+function invert(a) {
     return a * -1
 }
 
@@ -41,7 +41,7 @@ function operate(operator, a, b) {
         case '%':
             return percent(a)
         case '+/-':
-            return swap(a)
+            return invert(a)
         default:
             return null
     }                       
@@ -58,10 +58,10 @@ const numberButtons = document.querySelectorAll(".num");
 const operatorButtons = document.querySelectorAll(".operator")
 const modButtons = document.querySelectorAll(".modify")
 const equalBtn = document.querySelector(".equal")
+const decimalBtn = document.querySelector(".decimal")
 
 for (btn of numberButtons) {
     btn.addEventListener("click", (e) => {
-        // TODO: only if string length allows
         if (displayValue.length < 15) {
             displayValue += e.target.textContent
             display.textContent = displayValue
@@ -70,6 +70,18 @@ for (btn of numberButtons) {
         }
     })
 }
+
+
+decimalBtn.addEventListener("click", (e) => {
+    // if length exceeded -> out of leage
+    if (displayValue.length >= 15 ) {
+        display.textContent = 'out of my league!'
+    } else if (!displayValue.includes('.')) {
+        displayValue += e.target.textContent
+        display.textContent = displayValue
+    }
+})
+
 
 for (btn of operatorButtons) {
     btn.addEventListener("click", (e) => {
@@ -130,7 +142,3 @@ function limitToDisplayLength(value) {
     return value
 }
 
-
-// TODO: 
-// - Make the decimal button work. Add eventlistener and disable it when decimal is already on display. 
-// - Add keyboard support
