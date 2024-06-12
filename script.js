@@ -58,8 +58,12 @@ const equalBtn = document.querySelector(".equal")
 for (btn of numberButtons) {
     btn.addEventListener("click", (e) => {
         // TODO: only if string length allows
-        displayValue += e.target.textContent
-        display.textContent = displayValue
+        if (displayValue.length < 15) {
+            displayValue += e.target.textContent
+            display.textContent = displayValue
+        } else {
+            display.textContent = 'out of my league!'
+        }
     })
 }
 
@@ -81,7 +85,7 @@ for (btn of modButtons) {
         // make calculation
         displayValue = operate(e.target.textContent, parseFloat(display.textContent), 0)
         // display outcome
-        display.textContent = displayValue
+        display.textContent = limitToDisplayLength(displayValue)
     })
 }
 
