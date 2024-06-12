@@ -12,7 +12,11 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b
+    if (b === 0) {
+        return "Don't even try!"
+     } else {
+        return a / b 
+    }
 }
 
 function percent(a) {
@@ -97,7 +101,7 @@ function calculate() {
     let result = operate(operator, parseFloat(a), parseFloat(b))
     clearAll()
     // first clear all, then show result on display
-    display.textContent = limitToDisplayLength(result)
+    display.textContent = result === null ? '' : limitToDisplayLength(result)
 }
 
 function clearAll() {
