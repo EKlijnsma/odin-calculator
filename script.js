@@ -93,7 +93,7 @@ function calculate() {
     let result = operate(operator, parseFloat(a), parseFloat(b))
     clearAll()
     // first clear all, then show result on display
-    display.textContent = result
+    display.textContent = limitToDisplayLength(result)
 }
 
 function clearAll() {
@@ -104,7 +104,20 @@ function clearAll() {
     b = ''
     display.textContent = displayValue
 }
-// TODO: the display widens when you keep entering numbers, should be limited
 
-// eventlisteners on operator buttons:
-// when pressed, store current display value as a, store operator symbol as operator
+function limitToDisplayLength(value) {
+    // 15 characters is the max that fits in the screen
+    if (value > 999999999999999) {
+        return 'out of my league!'
+    }
+    const str = value.toString()
+    const strlen = str.length
+    if (strlen > 15) {
+        // at this point there must be a decimal in the value
+        // last character to display is at index 14 (15th char), so the number of decimals (preciesion) 
+        // is 14 minus the position of the decimal
+        const decimals = 14 - str.indexOf('.')
+        return value.toFixed(decimals)
+    }
+    return value
+}
