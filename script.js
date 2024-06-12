@@ -129,3 +129,8 @@ function limitToDisplayLength(value) {
     }
     return value
 }
+
+
+// TODO: 
+// - Make the decimal button work. Add eventlistener and disable it when decimal is already on display. 
+// - Add keyboard support
