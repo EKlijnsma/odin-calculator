@@ -15,6 +15,14 @@ function divide(a, b) {
     return a / b
 }
 
+function percent(a) {
+    return a / 100
+}
+
+function swap(a) {
+    return a * -1
+}
+
 // Generic operate function that calls one of the basic functions on 2 numbers
 function operate(operator, a, b) {
     switch(operator) {
@@ -26,6 +34,10 @@ function operate(operator, a, b) {
             return multiply(a,b)
         case '/':
             return divide(a,b)
+        case '%':
+            return percent(a)
+        case '+/-':
+            return swap(a)
         default:
             return null
     }                       
@@ -40,6 +52,7 @@ const display = document.querySelector(".display");
 const clearBtn = document.querySelector("#clr")
 const numberButtons = document.querySelectorAll(".num");
 const operatorButtons = document.querySelectorAll(".operator")
+const modButtons = document.querySelectorAll(".modify")
 const equalBtn = document.querySelector(".equal")
 
 for (btn of numberButtons) {
@@ -60,6 +73,15 @@ for (btn of operatorButtons) {
         a = display.textContent
         operator = e.target.textContent
         displayValue = ''
+    })
+}
+
+for (btn of modButtons) {
+    btn.addEventListener("click", (e) => {
+        // make calculation
+        displayValue = operate(e.target.textContent, parseFloat(display.textContent), 0)
+        // display outcome
+        display.textContent = displayValue
     })
 }
 
